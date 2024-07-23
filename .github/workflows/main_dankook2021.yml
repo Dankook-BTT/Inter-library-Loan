@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - main
-#      - 'back/**'
   workflow_dispatch:
 
 jobs:
