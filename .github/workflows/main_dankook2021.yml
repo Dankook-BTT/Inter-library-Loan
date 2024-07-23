@@ -21,17 +21,17 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
-        working-directory: project-root  # 'project-root'를 실제 프로젝트 루트 디렉토리 이름으로 변경
+        working-directory: Inter-library-Loan
 
       - name: Build with Gradle
         run: ./gradlew build
-        working-directory: project-root  # 'project-root'를 실제 프로젝트 루트 디렉토리 이름으로 변경
+        working-directory: Inter-library-Loan
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: project-root/build/libs/*.jar  # 'project-root'를 실제 프로젝트 루트 디렉토리 이름으로 변경
+          path: Inter-library-Loan/build/libs/*.jar
 
   deploy:
     runs-on: ubuntu-latest
