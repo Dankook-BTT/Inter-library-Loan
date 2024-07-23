@@ -20,12 +20,11 @@ jobs:
           distribution: 'microsoft'
 
       - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-        working-directory: Inter-library-Loan
+        run: chmod +x ./Back/ill/gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
-        working-directory: Inter-library-Loan
+        run: .Back/ill/gradlew build
+        working-directory: Back/ill
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
