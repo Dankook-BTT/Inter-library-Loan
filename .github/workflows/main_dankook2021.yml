@@ -23,7 +23,7 @@ jobs:
         run: chmod +x ./Back/ill/gradlew
 
       - name: Build with Gradle
-        run: .Back/ill/gradlew build
+        run: ./Back/ill/gradlew build
         working-directory: Back/ill
 
       - name: Upload artifact for deployment job
