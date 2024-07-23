@@ -44,6 +44,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: java-app
+          path: Back/ill/build/libs/java-app.jar
 
       - name: Login to Azure
         uses: azure/login@v2
