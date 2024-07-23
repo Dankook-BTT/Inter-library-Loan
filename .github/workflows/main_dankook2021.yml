@@ -2,8 +2,10 @@ name: Deploy Spring Boot Backend to Azure
 
 on:
   push:
-    paths:
+    branches:
       - main
+#    paths:
+#      - 'back/**'
   workflow_dispatch:
 
 jobs:
