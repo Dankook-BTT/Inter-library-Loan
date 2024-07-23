@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'dankook2021'
           slot-name: 'Production'
-          package: 'Back/ill/build/libs/*.jar'
+          package: 'java-app/*.jar'
