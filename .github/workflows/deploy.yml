@@ -3,7 +3,7 @@ name: Deploy to Azure
 on:
   push:
     branches:
-      - main  # 배포할 브랜치 이름
+      - front/devlop  # 배포할 브랜치 이름
 
 jobs:
   build-and-deploy:
@@ -30,4 +30,4 @@ jobs:
         app-name: 'Inter-library-Loan'
         slot-name: 'production'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: 'C:\DKU\Inter_library_Loan'
+        package: 'C:\inter_library_loan_new'
