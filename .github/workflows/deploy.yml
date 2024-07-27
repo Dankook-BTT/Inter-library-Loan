@@ -3,7 +3,7 @@ name: Deploy to Azure
 on:
   push:
     branches:
-      - front/devlop  # 배포할 브랜치 이름
+      - main  # 배포할 브랜치 이름
 
 jobs:
   build-and-deploy:
