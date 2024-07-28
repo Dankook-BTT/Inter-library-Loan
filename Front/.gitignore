@@ -1,7 +1,15 @@
-# Ignore the .vscode folder
-.vscode/
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
 
-<<<<<<< HEAD
 # IntelliJ related
 *.iml
 *.ipr
@@ -33,13 +41,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# Ignore Gradle project-specific cache directory
-.gradle
-
-# Ignore Gradle build output directory
-build
-=======
-# Ignore the .idea folder
-.idea/
->>>>>>> 3508546d06b7e84a548e25e68e3f4422bbb6653b
