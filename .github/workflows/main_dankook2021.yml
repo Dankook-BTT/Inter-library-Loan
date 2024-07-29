@@ -42,7 +42,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: java-app
-          path: Back/ill/build/libs/*.jar
+          path: ./Back/ill/build/libs
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -55,4 +55,4 @@ jobs:
           app-name: 'dankook2021'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: Back/ill/build/libs/*.jar
+          package: ./Back/ill/build/libs/*.jar
