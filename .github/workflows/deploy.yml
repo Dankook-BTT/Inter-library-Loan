@@ -48,6 +48,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: flutter-web-app
+          path: ./Front/build/web
+
+      - name: List files for debugging
+        run: ls -la ./Front/build/web   
       
       - name: Login to Azure
         uses: azure/login@v1
