@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:inter_library_loan/color.dart';
-import 'package:inter_library_loan/shared_button.dart';
+import 'package:inter_library_loan_new/color.dart';
+import 'package:inter_library_loan_new/shared_button.dart';
 
 import 'package:http/http.dart' as http;
 
