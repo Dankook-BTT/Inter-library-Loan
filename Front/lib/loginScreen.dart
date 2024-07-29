@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:inter_library_loan/main2.dart';
+import 'package:inter_library_loan_new/main2.dart';
 import 'signupScreen.dart';
-import 'screens/book_request_screen.dart';
-import 'screens/request_list_screen.dart';
-import 'screens/ai_recommendation_screen.dart';
+import 'package:inter_library_loan_new/screens/book_request_screen.dart';
+import 'package:inter_library_loan_new/screens/request_list_screen.dart';
+import 'package:inter_library_loan_new/screens/ai_recommendation_screen.dart';
 
 void main() {
   runApp(LoginApp());
