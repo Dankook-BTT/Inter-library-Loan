@@ -65,4 +65,4 @@ jobs:
           app-name: 'dankook2021'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: flutter-web-app
+          package: ./Front/build/web
