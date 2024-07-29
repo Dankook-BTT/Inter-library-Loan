@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: Back/ill/build/libs/*.jar
+          path: ./Back/ill/build/libs/*.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,11 +48,14 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+          
+      - name: List files
+        run: ls -R
+        
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'dankook2021'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ./Back/ill/build/libs/*.jar
+          package: ./Back/ill/build/libs/ill-0.0.1-SNAPSHOT.jar
