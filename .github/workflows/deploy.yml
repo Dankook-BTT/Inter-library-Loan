@@ -1,68 +1,67 @@
 name: Deploy to Azure
 
 on:
-  push:
-    branches:
-      - main  # 배포할 브랜치 이름
-    paths:
-      - 'Front/**'
-  workflow_dispatch:
+push:
+branches:
+  - main  # 배포할 브랜치 이름
+paths:
+  - 'Front/**'
+workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+build-and-deploy:
+runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+steps:
+- name: Checkout code
+  uses: actions/checkout@v4
 
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v4
-      with:
-        flutter-version: '3.22.2'
-      
-    - name: Change to Front directory
-      run: cd Front
-
-    - name: Install dependencies
-      run: flutter pub get
-      working-directory: ./Front
-
-    - name: Build Flutter web
-      run: flutter build web --target=lib/loginScreen.dart --no-tree-shake-icons
-      working-directory: ./Front
+- name: Set up Flutter
+  uses: subosito/flutter-action@v2
+  with:
+    flutter-version: '3.22.2'
   
-    - name: Upload artifact for deployment job
-      uses: actions/upload-artifact@v4
-      with:
-        name: flutter-web-app
-        path: ./Front/build/web/
+- name: Change to Front directory
+  run: cd Front
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build-and-deploy
-    environment: 'production'
+- name: Install dependencies
+  run: flutter pub get
+  working-directory: ./Front
 
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: flutter-web-app
-          path: ./Front/build/web
+- name: Build Flutter web
+  run: flutter build web --target=lib/loginScreen.dart --no-tree-shake-icons
+  working-directory: ./Front
 
-      - name: List files for debugging
-        run: ls -la ./Front/build/web   
-      
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+- name: Upload artifact for deployment job
+  uses: actions/upload-artifact@v4
+  with:
+    name: flutter-web-app
+    path: ./Front/build/web/
 
+deploy:
+runs-on: ubuntu-latest
+needs: build-and-deploy
+environment: 'production'
 
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'dankook2021'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ./Front/build/web
+steps:
+  - name: Download artifact from build job
+    uses: actions/download-artifact@v4
+    with:
+      name: flutter-web-app
+      path: ./Front/build/web
+
+  - name: List files for debugging
+    run: ls -la ./Front/build/web   
+  
+  - name: Login to Azure
+    uses: azure/login@v1
+    with:
+      creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+  - name: Deploy to Azure Web App
+    uses: azure/webapps-deploy@v2
+    with:
+      app-name: 'dankook2021'
+      slot-name: 'production'
+      publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+      package: ./Front/build/web
