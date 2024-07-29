@@ -55,4 +55,4 @@ jobs:
           app-name: 'dankook2021'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: java-app/*.jar
+          package: Back/ill/build/libs/*.jar
