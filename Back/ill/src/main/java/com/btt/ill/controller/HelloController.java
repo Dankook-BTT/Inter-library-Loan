@@ -1,4 +1,4 @@
-package com.btt.ill;
+package com.btt.ill.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
