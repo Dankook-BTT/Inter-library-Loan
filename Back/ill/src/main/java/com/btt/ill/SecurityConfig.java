@@ -35,6 +35,7 @@ public class SecurityConfig {
                         formLogin
                                 .loginPage("/login")
                                 .defaultSuccessUrl("/home", true)
+                                .failureUrl("/login?error=true")
                                 .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);

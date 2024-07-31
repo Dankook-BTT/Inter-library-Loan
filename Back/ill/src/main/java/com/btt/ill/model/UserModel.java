@@ -2,23 +2,20 @@ package com.btt.ill.model;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-@Setter @Getter
 @Entity
+@Data
+@Table(name="users")
 public class UserModel implements UserDetails {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long uid;
-
-    @Column(nullable = false, unique = true)
-    private String id;
+    private Long id;
 
     @Column(nullable = false)
     private String pw;
@@ -34,10 +31,10 @@ public class UserModel implements UserDetails {
 
     @Column
     private String role;
-
-    //TODO 이게 뭔지 주석 달아놓기
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        // 권한 설정
         return List.of();
     }
 
@@ -48,6 +45,6 @@ public class UserModel implements UserDetails {
 
     @Override
     public String getUsername() {
-        return id;
+        return name;
     }
 }
