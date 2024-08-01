@@ -8,6 +8,7 @@ import 'screens/loginScreen.dart'; // loginScreen.dart를 임포트
 import 'screens/idCheck.dart'; //아이디 찾기 화면 구현한 다트 파일 소환
 import 'screens/pwCheck.dart'; //비번 찾기 화면 구현한 다트 파일 소환
 import 'screens/adminApprovalScreen.dart'; //관리자가 회원가입 승인하는 기능을 하는 다트 파일 소환
+import 'screens/mypage.dart'; //마이페이지 다트 파일 소환
 
 void main() {
   runApp(MyApp()); //runApp은 화면 렌더링, 위젯의 계층적 구조를 보여주는 위젯 트리를 보여줌
@@ -23,12 +24,17 @@ class MyApp extends StatelessWidget { //MyApp은 루트 위젯 느낌, Stateless
       theme: ThemeData( //앱 테마
         primarySwatch: Colors.blue, //앱 색상 지정
       ),
+      initialRoute: '/',
       routes: { //앱 내의 내비게이션 경로 설정
         '/': (context) => LoginScreen(),
         '/book-request': (context) => BookRequestScreen(),
         '/request-list': (context) => RequestListScreen(),
         '/ai-recommendation': (context) => AIRecommendationScreen(),
-        '/sign-up-Screen': (context) => SignUpScreen(),
+        '/sign-up': (context) => SignUpScreen(),
+        '/id-check': (context) => IdCheckScreen(),
+        '/pw-check': (context) => PwCheckScreen(),
+        '/admin-approval': (context) => AdminApprovalScreen(),
+        '/my-page': (context) => MyPage(),
       },
     );
   }
@@ -69,6 +75,16 @@ class _HomeScreenState extends State<HomeScreen>{
       _selectedIndex = index; //선택된 인덱스를 업데이트
     });
   }
+
+  void _onMenuSelected(String value) {
+    switch (value) {
+      case 'myPage':
+        Navigator.pushNamed(context, '/my-page');
+        break;
+    // 다른 옵션을 추가할 수 있습니다.
+    }
+  }
+
 
   // _HomeScreenState 클래스의 build 메서드
   // 화면의 UI를 구성하고 렌더링하는 역할
@@ -117,14 +133,21 @@ class _HomeScreenState extends State<HomeScreen>{
                     //남은 공간을 빈 공간으로 채우기
                 Spacer(), //오른쪽에 버튼이 붙지 않도록 공간 확보
                 //네 번째 버튼: '더보기'
-                TextButton(
-                  onPressed: () {
-                    //더보기 버튼을 눌렀을 때 실행되는 코드
-                    //현재 비어있음(나중에 기능을 추가할 수 있음)
+                PopupMenuButton<String>(
+                  onSelected: _onMenuSelected,
+                  itemBuilder: (BuildContext context) {
+                    return [
+                      PopupMenuItem<String>(
+                        value: 'myPage',
+                        child: Text('마이페이지'),
+                      ),
+                      // 다른 메뉴 항목을 추가할 수 있습니다.
+                    ];
                   },
-                  child: Text('더보기'), //버튼에 표시될 텍스트
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.black, // 기본 색상이 검은색
+                  child: Text('더보기',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ],
