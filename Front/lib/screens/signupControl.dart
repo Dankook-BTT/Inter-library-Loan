@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:inter_library_loan_new/models/user_model.dart'; // UserModel을 가져옵니다.
 
-class HomeScreen extends StatelessWidget {
+class signupControl extends StatelessWidget {
   final UserModel user; // 현재 사용자 정보
 
-  HomeScreen({required this.user});
+  signupControl({required this.user});
 
   @override
   Widget build(BuildContext context) {

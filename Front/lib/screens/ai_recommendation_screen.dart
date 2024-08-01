@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../models/book_request.dart';
 import '../widgets/book_request_card.dart';
+import '../screens/mypage.dart';
 
 class AIRecommendationScreen extends StatefulWidget {
   @override

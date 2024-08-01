@@ -63,6 +63,7 @@ class UserModel {
   // 개인정보에 사용되는 JSON 데이터를 생성하는 메서드
   Map<String, dynamic> toPersonalInfoJson() {
     return {
+      'id': id,
       'name': name,
       'email': email,
       'lib': lib,
