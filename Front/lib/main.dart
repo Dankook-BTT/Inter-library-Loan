@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget { //MyApp은 루트 위젯 느낌, Stateless
       initialRoute: '/',
       routes: { //앱 내의 내비게이션 경로 설정
         '/': (context) => LoginScreen(),
+        '/home': (context) => RequestListScreen(),
         '/book-request': (context) => BookRequestScreen(),
         '/request-list': (context) => RequestListScreen(),
         '/ai-recommendation': (context) => AIRecommendationScreen(),

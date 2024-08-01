@@ -4,10 +4,13 @@
 
 import 'package:flutter/material.dart';//material 패키지를 가져오는데, 이 material 패키지의 요소에는 대략
 //위젯, 화면 스타일, 네비게이션 및 라우팅, 상호작용 등의 기능이 있음
-import 'package:inter_library_loan_new/main.dart'; //파일의 진입점을 구현한 메인 다트 파일 소환
+import 'package:http/http.dart' as http; // http 패키지 임포트
+import 'dart:convert'; // JSON 파싱을 위해 사용
+
 import 'package:inter_library_loan_new/screens/signupScreen.dart';//회원가입 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/idCheck.dart'; //아이디 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/pwCheck.dart'; //비번 찾기 화면을 구현한 다트 파일 소환
+import 'package:inter_library_loan_new/screens/request_list_screen.dart';
 
 //애플리케이션의 루트 위젯을 정의하는 클래스
 class LoginApp extends StatelessWidget {
@@ -18,14 +21,8 @@ class LoginApp extends StatelessWidget {
       initialRoute: '/',
       //라우팅을 설정하여 경로와 화면을 연결
       routes: {
-        '/': (context) =>
-            Scaffold(
-              appBar: AppBar(
-                title: Text('XX도서관'),
-              ),
-              body: LoginScreen(),
-            ),
-        '/sign-up': (context) => SignUpScreen(),
+        '/': (context) => LoginScreen(),
+        '/home': (context) => RequestListScreen(),
         '/sign-up': (context) => SignUpScreen(),
         '/id-check': (context) => IdCheckScreen(),
         '/pw-check': (context) => PwCheckScreen(),
@@ -63,6 +60,49 @@ class _LoginScreenState extends State<LoginScreen> {
   //둘 다 초기값은 null이며, 사용자가 입력한 값이 할당됨
   String? _id;
   String? _password;
+  String? _userRole = "user";
+
+  Future<void> _login() async {
+    final url = Uri.parse('https://example.com/api/login'); // 서버의 로그인 엔드포인트 URL
+    try {
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({'id': _id, 'password': _password}),
+      );
+
+      if (response.statusCode == 200) {
+        // 로그인 성공
+        final data = json.decode(response.body);
+        // 예: 토큰 저장, 사용자 정보 저장 등
+        Navigator.pushNamed(context, '/home'); // 홈 화면으로 이동
+      } else {
+        // 로그인 실패
+        final errorData = json.decode(response.body);
+        _showErrorDialog(errorData['message'] ?? '로그인에 실패했습니다.');
+      }
+    } catch (e) {
+      _showErrorDialog('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('오류'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: Text('확인'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,66 +165,104 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(
                 child: Column(
                   children: [
+                    //아이디 찾기 버튼
                     TextButton(
                       onPressed: () {
-                        // '아이디/비밀번호 찾기' 버튼 클릭 시 로직 추가
-                        print('아이디/비밀번호 찾기 버튼 클릭됨');
-                        // 예: 비밀번호 찾기 페이지로 이동
-                        Navigator.pushNamed(context, '/id-check'); // 아이디 찾기 화면으로 이동
+                        Navigator.pushNamed(context, '/id-check');
                       },
-                      child: Text('아이디/비밀번호 찾기', style: TextStyle(fontSize: 15,color: Colors.grey)),
+                      child: Text('아이디 찾기', style: TextStyle(fontSize: 15, color: Colors.grey)),
+                    ),
+                    // 비밀번호 찾기 버튼
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/pw-check');
+                      },
+                      child: Text('비밀번호 찾기', style: TextStyle(fontSize: 15, color: Colors.grey)),
                     ),
                     SizedBox(
                       width: 500, // 화면 너비에 맞게 버튼을 키움
                       height: 50, // 버튼 높이를 설정
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            // 여기에 로그인 로직 추가
-                            Navigator.pushNamed(context, '/'); // 유효성 검사 후 홈 화면으로 이동
-                          }
-                        },
-                        child: Text('로그인',
+                       onPressed: () async {
+                         if (_formKey.currentState!.validate()) {
+                           try {
+                             final response = await http.post(
+                                Uri.parse('https://example.com/api/'), // 실제 API 엔드포인트로 변경
+                                headers: <String, String>{
+                                   'Content-Type': 'application/json; charset=UTF-8',
+                                },
+                                body: jsonEncode(<String, String>{
+                                  'id': _id ?? '', // 사용자가 입력한 ID
+                                  'password': _password ?? '', // 사용자가 입력한 비밀번호
+                                }),
+                              );
+
+                              if (response.statusCode == 200) {
+                                    // 로그인 성공
+                                  final responseData = json.decode(response.body);
+                                  final token = responseData['token']; // 서버에서 반환한 토큰
+                                    // 예: 토큰을 안전하게 저장하는 로직 (로컬 스토리지, 세션 등)
+                                    // 로그인 성공 후 홈 화면으로 이동
+                                  Navigator.pushNamed(context, '/home');
+                                } else {
+                                    // 로그인 실패
+                                  final errorResponse = json.decode(response.body);
+                                  _showErrorDialog(errorResponse['message'] ?? '로그인에 실패했습니다.');
+                                }
+                              } catch (error) {
+                                _showErrorDialog('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
+                              }
+                            }
+                          },
+                          child: Text('로그인',
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xF5F5F5), //버튼 배경 색상 설정
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0), //버튼 모서리를 둥글게
-                          ),// 버튼 색상 변경
+                              color: Colors.black,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xF5F5F5), //버튼 배경 색상 설정
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                15.0), //버튼 모서리를 둥글게
+                          ), // 버튼 색상 변경
                         ),
                       ),
                     ),
 
                     SizedBox(height: 10), //10픽셀의 간격 추가
-                    SizedBox(
-                      width: 500, // 화면 너비에 맞게 버튼을 키움
-                      height: 50, // 버튼 높이를 설정
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // 회원가입 버튼 클릭 시 로직 추가
-                          Navigator.pushNamed(context, '/sign-up'); // 회원가입 화면으로 이동
-                        },
-                        child: Text('회원가입',
+                    //조건에 따라 회원가입 버튼을 표시
+                    if (_userRole == "admin")
+                      SizedBox(
+                        width: 500, // 화면 너비에 맞게 버튼을 키움
+                        height: 50, // 버튼 높이를 설정
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // 회원가입 버튼 클릭 시 로직 추가
+                            Navigator.pushNamed(
+                                context, '/sign-up'); // 회원가입 화면으로 이동
+                          },
+                          child: Text('회원가입',
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,)),
+                              color: Colors.black,
+                            ),
+                          ),
                           style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xF5F5F5),//버튼 배경 색상 설정
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-
-                        ),// 버튼 색상 변경
+                            backgroundColor: Color(0xF5F5F5), //버튼 배경 색상 설정
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ), // 버튼 색상 변경
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
