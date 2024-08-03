@@ -19,11 +19,15 @@ public class DatabaseInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // 초기 admin 계정 생성
+        // id : admin
+        // pw : 1234
         UserModel admin = new UserModel();
+        admin.setId("admin");
+        admin.setPw(passwordEncoder.encode("1234"));
         admin.setEmail("admin@example.com");
         admin.setLib("admin_lib");
         admin.setName("admin");
-        admin.setPw(passwordEncoder.encode("1234"));
         admin.setRole("ROLE_ADMIN");
 
         userRepository.save(admin);

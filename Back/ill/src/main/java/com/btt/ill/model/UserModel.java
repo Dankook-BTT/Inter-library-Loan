@@ -15,7 +15,10 @@ import java.util.List;
 public class UserModel implements UserDetails {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long uid;
+
+    @Column(nullable = false)
+    private String id;
 
     @Column(nullable = false)
     private String pw;
