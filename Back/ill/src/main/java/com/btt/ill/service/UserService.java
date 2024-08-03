@@ -16,6 +16,27 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+
+    /*==검색 기능--
+     * uid
+     * id
+     * 이름
+     * 이메일
+     */
+    public UserDetails loadUserByUid(Long uid) throws UsernameNotFoundException {
+        UserModel user = userRepository.findByUid(uid);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return user;
+    }
+    public UserDetails loadUserById(Long id) throws UsernameNotFoundException {
+        UserModel user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with id: " + id);
+        }
+        return user;
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserModel user = userRepository.findByName(username);
@@ -24,11 +45,17 @@ public class UserService implements UserDetailsService {
         }
         return user;
     }
-
-    public Optional<UserModel> loadUserById(Long id) throws UsernameNotFoundException {
-        return userRepository.findById(id);
+    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+        UserModel user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with email: " + email);
+        }
+        return user;
     }
 
+    /*--생성기능--
+     *
+     */
     public UserModel createUser(UserModel user) {
         return userRepository.save(user);
     }
