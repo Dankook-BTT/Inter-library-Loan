@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart'; //material 패키지를 가져오는데, 이 material 패키지의 요소에는 대략
 //위젯, 화면 스타일, 네비게이션 및 라우팅, 상호작용 등의 기능이 있음
-import 'package:inter_library_loan_new/screens/signupScreen.dart'; //회원가입 화면을 구현한 다트 파일 소환
+import 'package:inter_library_loan_new/screens/signupScreen.dart' as screen;//회원가입 화면을 구현한 다트 파일 소환
 import 'screens/book_request_screen.dart'; //도서 요청 화면을 구현한 다트 파일 소환
 import 'screens/request_list_screen.dart'; //요청 목록 화면을 구현한 다트 파일 소환
 import 'screens/ai_recommendation_screen.dart'; //ai 도서 추천 화면을 구현한 다트 파일 소환
@@ -9,6 +9,10 @@ import 'screens/idCheck.dart'; //아이디 찾기 화면 구현한 다트 파일
 import 'screens/pwCheck.dart'; //비번 찾기 화면 구현한 다트 파일 소환
 import 'screens/adminApprovalScreen.dart'; //관리자가 회원가입 승인하는 기능을 하는 다트 파일 소환
 import 'screens/mypage.dart'; //마이페이지 다트 파일 소환
+import 'screens/CreateAdminScreen.dart'; //관리자 생성 화면 소환
+import 'screens/signupControl.dart' as control; //회원가입 허가 파일 소환
+import 'screens/data_screen.dart'; // 데이터 받는 화면 소환
+import 'package:inter_library_loan_new/models/user_model.dart';
 
 void main() {
   runApp(MyApp()); //runApp은 화면 렌더링, 위젯의 계층적 구조를 보여주는 위젯 트리를 보여줌
@@ -31,11 +35,23 @@ class MyApp extends StatelessWidget { //MyApp은 루트 위젯 느낌, Stateless
         '/book-request': (context) => BookRequestScreen(),
         '/request-list': (context) => RequestListScreen(),
         '/ai-recommendation': (context) => AIRecommendationScreen(),
-        '/sign-up': (context) => SignUpScreen(),
+        '/sign-up': (context) => screen.SignUpScreen(),
         '/id-check': (context) => IdCheckScreen(),
         '/pw-check': (context) => PwCheckScreen(),
         '/admin-approval': (context) => AdminApprovalScreen(),
         '/my-page': (context) => MyPage(),
+        '/admin': (context) => AdminCreationScreen(),
+        '/data-screen': (context) => DataScreen(),
+        '/sign-up-cont': (context) => control.SignUpControl(
+            user: UserModel(
+            id: 'someId',
+            password: 'somePassword',
+            role: 'admin', // 'admin' 또는 'user'와 같은 유효한 역할
+            lib: 'someLibrary',
+            name: null, // 선택적 필드
+            email: null, // 선택적 필드
+          ),
+        ),
       },
     );
   }
@@ -63,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen>{
     BookRequestScreen(),  //책 요청 화면
     RequestListScreen(),   //요청 목록 화면
     AIRecommendationScreen(), //AI 추천화면
-    SignUpScreen(), //회원 가입 화면
+    screen.SignUpScreen(), //회원 가입 화면
   ];
 
   //사용자가 탭바의 아이템을 탭할 때 호출되는 함수
