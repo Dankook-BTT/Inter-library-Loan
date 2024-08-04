@@ -26,10 +26,10 @@ class LoginApp extends StatelessWidget {
         '/sign-up': (context) => SignUpScreen(),
         '/id-check': (context) => IdCheckScreen(),
         '/pw-check': (context) => PwCheckScreen(),
-        //추가적인 경로를 필요에 따라 여기에 추가할 수 있음
+        // 추가적인 경로를 필요에 따라 여기에 추가할 수 있음
         // 예: '/home': (context) => HomeScreen(),
-        //home 속성을 사용하지 않고 모든 경로를 routes로 관리하도록 변경함으로써
-        //경로 설정을 명확하게 하고 충돌을 피하도록 수정을 했음
+        // home 속성을 사용하지 않고 모든 경로를 routes로 관리하도록 변경함으로써
+        // 경로 설정을 명확하게 하고 충돌을 피하도록 수정을 했음
       },
     );
   }
