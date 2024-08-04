@@ -23,16 +23,16 @@ public class UserModel implements UserDetails {
     @Column(nullable = false)
     private String pw;
 
-    @Column
+    @Column(nullable = false)
     private String lib;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String role;
     
     @Override

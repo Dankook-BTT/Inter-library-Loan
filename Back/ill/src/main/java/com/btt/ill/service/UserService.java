@@ -6,16 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
+    @Autowired
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     /*==검색 기능--
      * uid
@@ -30,10 +34,10 @@ public class UserService implements UserDetailsService {
         }
         return user;
     }
-    public UserDetails loadUserById(Long id) throws UsernameNotFoundException {
-        UserModel user = userRepository.findById(id).orElse(null);
+    public UserModel loadUserById(String id) throws UsernameNotFoundException {
+        UserModel user = userRepository.findById(id);
         if (user == null) {
-            throw new UsernameNotFoundException("User not found with id: " + id);
+            throw new UsernameNotFoundException("User not found with userId: " + id);
         }
         return user;
     }
@@ -51,6 +55,11 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with email: " + email);
         }
         return user;
+    }
+
+    // password 비교 기능
+    public boolean checkPassword(UserModel user, String rawPassword) {
+        return passwordEncoder.matches(rawPassword, user.getPassword());
     }
 
     /*--생성기능--
