@@ -12,13 +12,13 @@ import 'package:inter_library_loan_new/screens/idCheck.dart'; //아이디 찾기
 import 'package:inter_library_loan_new/screens/pwCheck.dart'; //비번 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/request_list_screen.dart';
 
+final url = Uri.parse('https://example.com/api/login'); // 서버의 로그인 엔드포인트 URL
+
 //애플리케이션의 루트 위젯을 정의하는 클래스
 class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //초기 경로를 '/login'으로 설정하여 앱이 시작될 때 LoginScreen을 표시
-      initialRoute: '/',
       //라우팅을 설정하여 경로와 화면을 연결
       routes: {
         '/': (context) => LoginScreen(),
@@ -63,7 +63,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _userRole = "user";
 
   Future<void> _login() async {
-    final url = Uri.parse('https://example.com/api/login'); // 서버의 로그인 엔드포인트 URL
     try {
       final response = await http.post(
         url,
