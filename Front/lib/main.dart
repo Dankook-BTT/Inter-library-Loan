@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget { //MyApp은 루트 위젯 느낌, Stateless
             password: 'somePassword',
             role: 'admin', // 'admin' 또는 'user'와 같은 유효한 역할
             lib: 'someLibrary',
-            name: 'admin', // 선택적 필드
-            email: 'admin', // 선택적 필드
+            name: 'admin',
+            email: 'admin',
           ),
         ),
       },
