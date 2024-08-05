@@ -6,9 +6,9 @@
 class UserModel {
   // 공통적으로 요구되는 사용자 정보
   final String id; // 로그인 ID
-  final String? name; // 사용자 이름
+  final String name; // 사용자 이름
   final String role; // 사용자 역할 (예: admin, user)
-  final String? email; // 사용자 이메일
+  final String email; // 사용자 이메일
   final String lib; // 소속 도서관 정보
 
   // 로그인에 사용되는 정보
