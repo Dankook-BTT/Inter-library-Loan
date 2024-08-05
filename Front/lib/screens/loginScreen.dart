@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';//material 패키지를 가져오는데, 
 import 'package:http/http.dart' as http; // http 패키지 임포트
 import 'dart:convert'; // JSON 파싱을 위해 사용
 
-import 'package:inter_library_loan_new/screens/signupScreen.dart';//회원가입 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/idCheck.dart'; //아이디 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/pwCheck.dart'; //비번 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/book_request_screen.dart';
@@ -23,7 +22,6 @@ class LoginApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginScreen(),
         '/main/book-request': (context) => BookRequestScreen(),
-        '/admin/admin_approval/sign-up-cont/sign-up': (context) => SignUpScreen(),
         '/id-check': (context) => IdCheckScreen(),
         '/pw-check': (context) => PwCheckScreen(),
         // 추가적인 경로를 필요에 따라 여기에 추가할 수 있음
