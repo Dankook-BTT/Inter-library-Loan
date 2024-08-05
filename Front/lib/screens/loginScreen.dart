@@ -10,7 +10,7 @@ import 'dart:convert'; // JSON 파싱을 위해 사용
 import 'package:inter_library_loan_new/screens/signupScreen.dart';//회원가입 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/idCheck.dart'; //아이디 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/pwCheck.dart'; //비번 찾기 화면을 구현한 다트 파일 소환
-import 'package:inter_library_loan_new/screens/request_list_screen.dart';
+import 'package:inter_library_loan_new/screens/book_request_screen.dart';
 
 final url = Uri.parse('https://example.com/api/login'); // 서버의 로그인 엔드포인트 URL
 
@@ -22,8 +22,8 @@ class LoginApp extends StatelessWidget {
       //라우팅을 설정하여 경로와 화면을 연결
       routes: {
         '/': (context) => LoginScreen(),
-        '/home': (context) => RequestListScreen(),
-        '/sign-up': (context) => SignUpScreen(),
+        '/main/book-request': (context) => BookRequestScreen(),
+        '/admin/admin_approval/sign-up-cont/sign-up': (context) => SignUpScreen(),
         '/id-check': (context) => IdCheckScreen(),
         '/pw-check': (context) => PwCheckScreen(),
         // 추가적인 경로를 필요에 따라 여기에 추가할 수 있음
