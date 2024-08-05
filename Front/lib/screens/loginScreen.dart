@@ -7,29 +7,27 @@ import 'package:flutter/material.dart';//material 패키지를 가져오는데, 
 import 'package:http/http.dart' as http; // http 패키지 임포트
 import 'dart:convert'; // JSON 파싱을 위해 사용
 
-import 'package:inter_library_loan_new/screens/signupScreen.dart';//회원가입 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/idCheck.dart'; //아이디 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/pwCheck.dart'; //비번 찾기 화면을 구현한 다트 파일 소환
-import 'package:inter_library_loan_new/screens/request_list_screen.dart';
+import 'package:inter_library_loan_new/screens/book_request_screen.dart';
+
+final url = Uri.parse('https://dankook2021.azurewebsites.net/'); // 서버의 로그인 엔드포인트 URL
 
 //애플리케이션의 루트 위젯을 정의하는 클래스
 class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //초기 경로를 '/login'으로 설정하여 앱이 시작될 때 LoginScreen을 표시
-      initialRoute: '/',
       //라우팅을 설정하여 경로와 화면을 연결
       routes: {
         '/': (context) => LoginScreen(),
-        '/home': (context) => RequestListScreen(),
-        '/sign-up': (context) => SignUpScreen(),
+        '/main/book-request': (context) => BookRequestScreen(),
         '/id-check': (context) => IdCheckScreen(),
         '/pw-check': (context) => PwCheckScreen(),
-        //추가적인 경로를 필요에 따라 여기에 추가할 수 있음
+        // 추가적인 경로를 필요에 따라 여기에 추가할 수 있음
         // 예: '/home': (context) => HomeScreen(),
-        //home 속성을 사용하지 않고 모든 경로를 routes로 관리하도록 변경함으로써
-        //경로 설정을 명확하게 하고 충돌을 피하도록 수정을 했음
+        // home 속성을 사용하지 않고 모든 경로를 routes로 관리하도록 변경함으로써
+        // 경로 설정을 명확하게 하고 충돌을 피하도록 수정을 했음
       },
     );
   }
@@ -63,7 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _userRole = "user";
 
   Future<void> _login() async {
-    final url = Uri.parse('https://example.com/api/login'); // 서버의 로그인 엔드포인트 URL
     try {
       final response = await http.post(
         url,
