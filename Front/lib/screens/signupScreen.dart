@@ -19,6 +19,57 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Signup'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Signup Screen Content',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            // 여기에 회원가입 관련 콘텐츠를 추가할 수 있습니다.
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/main/my-page');
+              },
+              child: Text('Go to My Page'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/main/request-list');
+              },
+              child: Text('Go to Request List'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/main/ai-recommendation');
+              },
+              child: Text('Go to AI Recommendation'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/admin/data_screen');
+              },
+              child: Text('Go to Data Screen'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+  @override
   SignUpScreenState createState() => SignUpScreenState();
 }
 
