@@ -1,6 +1,7 @@
 //관리자가 회원가입을 승인하도록 하게
 //관리자만 볼 수 있는 회원가입 승인 대시보드
 import 'package:flutter/material.dart';
+import 'package:inter_library_loan_new/utils/path.dart';
 
 class AdminApprovalScreen extends StatefulWidget {
   @override

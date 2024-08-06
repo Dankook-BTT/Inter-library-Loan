@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:inter_library_loan_new/utils/path.dart';
 
-final url = Uri.parse('https://dankook2021.azurewebsites.net/id-check'); // 아이디 찾기 API 엔드포인트
+
 class IdCheckScreen extends StatefulWidget {
   @override
   _IdCheckScreenState createState() => _IdCheckScreenState();

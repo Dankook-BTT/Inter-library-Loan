@@ -2,7 +2,7 @@
 //권한이 있을 경우에만 회원가입 화면에 접근이 가능하도록 만든 파일
 import 'package:flutter/material.dart';
 import 'package:inter_library_loan_new/models/user_model.dart'; // UserModel을 가져옵니다.
-
+import 'package:inter_library_loan_new/utils/path.dart';
 class SignUpControl extends StatelessWidget {
   final UserModel user; // 현재 사용자 정보
 
