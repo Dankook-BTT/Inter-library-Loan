@@ -13,7 +13,7 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
   String? _message;
 
   Future<void> _sendEmailForId() async {
-    final url = Uri.parse('https://example.com/api/find-id'); // 아이디 찾기 API 엔드포인트
+    final url = Uri.parse('https://dankook2021.azurewebsites.net/id-check'); // 아이디 찾기 API 엔드포인트
     try {
       final response = await http.post(
         url,
