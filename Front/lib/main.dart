@@ -14,6 +14,8 @@ import 'screens/signupControl.dart' as control; //회원가입 허가 파일 소
 import 'screens/data_screen.dart'; // 데이터 받는 화면 소환
 import 'package:inter_library_loan_new/models/user_model.dart';
 
+final url = Uri.parse('https://dankook2021.azurewebsites.net/'); // 서버의 로그인 엔드포인트 URL
+
 void main() {
   runApp(MyApp()); //runApp은 화면 렌더링, 위젯의 계층적 구조를 보여주는 위젯 트리를 보여줌
 } //main()은 화면의 진입점을 위해서 필요한 함수

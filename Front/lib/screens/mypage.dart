@@ -94,38 +94,39 @@ class _MyPageState extends State<MyPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Text(
-            'My Page Content',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          // 여기에 사용자 정보나 기타 컨텐츠를 추가할 수 있습니다.
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/main/request-list');
-            },
-            child: Text('Go to Request List'),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/main/ai-recommendation');
-            },
-            child: Text('Go to AI Recommendation'),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/admin/data_screen');
-            },
-            child: Text('Go to Data Screen'),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/admin/admin_approval');
-            },
-          child: Text('Go to Admin Approval'),
+            Text(
+              'My Page Content',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            // 여기에 사용자 정보나 기타 컨텐츠를 추가할 수 있습니다.
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/main/request-list');
+              },
+              child: Text('Go to Request List'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/main/ai-recommendation');
+              },
+              child: Text('Go to AI Recommendation'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/admin/data_screen');
+              },
+              child: Text('Go to Data Screen'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/admin/admin_approval');
+              },
+              child: Text('Go to Admin Approval'),
+            ),
             SizedBox(height: 20),
             buildUserInfoCard('이름', name, (value) {
               setState(() {

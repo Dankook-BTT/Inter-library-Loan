@@ -2,13 +2,16 @@
 //관리자만 볼 수 있는 회원가입 승인 대시보드
 import 'package:flutter/material.dart';
 
-class AdminApprovalScreen extends StatelessWidget {
+class AdminApprovalScreen extends StatefulWidget {
+  @override
+  _AdminApprovalScreenState createState() => _AdminApprovalScreenState();
+
   final List<Map<String, String>> pendingRequests = [
     {'username': 'user1', 'status': 'pending'},
     {'username': 'user2', 'status': 'pending'},
     // 대기 중인 요청 리스트 예시 (실제 구현에서는 서버에서 받아옴)
-    _AdminApprovalScreenState createState() => _AdminApprovalScreenState();
   ];
+
 
   void _approveRequest(String username) {
     // 서버 API 호출하여 해당 사용자의 요청 승인
@@ -22,6 +25,7 @@ class AdminApprovalScreen extends StatelessWidget {
     // 처리 후 UI 업데이트 로직 추가
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +33,7 @@ class AdminApprovalScreen extends StatelessWidget {
         title: Text('회원가입 요청 관리'),
       ),
       body: ListView.builder(
+
         itemCount: pendingRequests.length,
         itemBuilder: (context, index) {
           return ListTile(

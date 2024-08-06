@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+final url = Uri.parse('https://dankook2021.azurewebsites.net/id-check'); // 아이디 찾기 API 엔드포인트
 class IdCheckScreen extends StatefulWidget {
   @override
   _IdCheckScreenState createState() => _IdCheckScreenState();
@@ -21,7 +22,7 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
 
     if (emailSentSuccessfully) {
       // 이메일 발송이 성공하면 로그인 화면으로 이동
-      Navigator.pushNamed(context, '/login');
+      Navigator.pushNamed(context, '/');
     } else {
       // 이메일 발송 실패 시 사용자에게 메시지를 표시
       setState(() {
@@ -29,8 +30,9 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
       });
     }
   }
-  Future<void> _sendEmailForId() async {
-    final url = Uri.parse('https://dankook2021.azurewebsites.net/id-check'); // 아이디 찾기 API 엔드포인트
+
+
+  Future<void> _sendToEmailForId() async {
     try {
       final response = await http.post(
         url,
@@ -103,7 +105,7 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    _sendEmailForId(); // 이메일로 아이디 발송 요청
+                    _sendToEmailForId(); // 이메일로 아이디 발송 요청
                   }
                 },
                 child: Text('아이디 발송'),

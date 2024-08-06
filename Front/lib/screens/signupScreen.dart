@@ -16,6 +16,10 @@ void main() {
 
 // SignUpScreen 클래스 정의
 class SignUpScreen extends StatefulWidget {
+
+  @override
+  SignUpScreenState createState() => SignUpScreenState();
+  
   const SignUpScreen({super.key});
 
   @override
@@ -68,9 +72,6 @@ class SignUpScreen extends StatefulWidget {
       ),
     );
   }
-}
-  @override
-  SignUpScreenState createState() => SignUpScreenState();
 }
 
 class SignUpScreenState extends State<SignUpScreen> {

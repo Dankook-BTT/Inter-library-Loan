@@ -18,9 +18,22 @@ class SignUpControl extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Signup Control Content',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ElevatedButton(
+              onPressed: () {
+                if (user.isAdmin()) {
+                  // 사용자가 admin일 때만 SignUpScreen으로 이동
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen()),
+                  );
+                } else {
+                  // admin이 아닌 경우, 접근 거부 메시지 표시
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('접근 권한이 없습니다.')),
+                  );
+                }
+              },
+              child: Text('회원가입 화면으로 이동'),
             ),
             SizedBox(height: 20),
             // 여기에 가입 관리 관련 콘텐츠를 추가할 수 있습니다.
@@ -60,39 +73,6 @@ class SignUpControl extends StatelessWidget {
 
   SignUpControl({required this.user});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Screen'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // 회원가입 버튼
-            ElevatedButton(
-              onPressed: () {
-                if (user.isAdmin()) {
-                  // 사용자가 admin일 때만 SignUpScreen으로 이동
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignUpScreen()),
-                  );
-                } else {
-                  // admin이 아닌 경우, 접근 거부 메시지 표시
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('접근 권한이 없습니다.')),
-                  );
-                }
-              },
-              child: Text('회원가입 화면으로 이동'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 class SignUpScreen extends StatelessWidget {
