@@ -6,6 +6,58 @@ import 'package:inter_library_loan_new/models/user_model.dart'; // UserModel을 
 class SignUpControl extends StatelessWidget {
   final UserModel user; // 현재 사용자 정보
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Signup Control'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Signup Control Content',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            // 여기에 가입 관리 관련 콘텐츠를 추가할 수 있습니다.
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/main/my-page');
+              },
+              child: Text('Go to My Page'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/main/request-list');
+              },
+              child: Text('Go to Request List'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/main/ai-recommendation');
+              },
+              child: Text('Go to AI Recommendation'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/admin/data_screen');
+              },
+              child: Text('Go to Data Screen'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
   SignUpControl({required this.user});
 
   @override
