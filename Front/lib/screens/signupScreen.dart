@@ -31,7 +31,7 @@ class SignUpScreenState extends State<SignUpScreen> {
   String? _pwCheck;
 
   Future<String> signUp(String username, String email, String password) async {
-    final url = Uri.parse('http://54.180.42.87/api/signup');  // 실제 서버 주소 사용
+    final url = Uri.parse('https://dankook2021.azurewebsites.net/signup');  // 실제 서버 주소 사용
     final headers = {"Content-Type": "application/json"};
     final body = jsonEncode({
       'name': username,
