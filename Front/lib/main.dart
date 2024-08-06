@@ -14,7 +14,6 @@ import 'screens/signupControl.dart' as control; //회원가입 허가 파일 소
 import 'screens/data_screen.dart'; // 데이터 받는 화면 소환
 import 'package:inter_library_loan_new/models/user_model.dart';
 
-final url = Uri.parse('https://dankook2021.azurewebsites.net/'); // 서버의 로그인 엔드포인트 URL
 
 void main() {
   runApp(MyApp()); //runApp은 화면 렌더링, 위젯의 계층적 구조를 보여주는 위젯 트리를 보여줌
@@ -45,12 +44,12 @@ class MyApp extends StatelessWidget { //MyApp은 루트 위젯 느낌, Stateless
         '/admin/data-screen': (context) => DataScreen(),
         '/admin/admin_approval/sign-up-cont': (context) => control.SignUpControl(
             user: UserModel(
-            id: 'someId',
-            password: 'somePassword',
+            id: 'admin',
+            password: '1234',
             role: 'admin', // 'admin' 또는 'user'와 같은 유효한 역할
             lib: 'someLibrary',
             name: 'admin',
-            email: 'admin',
+            email: 'admin@library.ac.kr',
           ),
         ),
       },
