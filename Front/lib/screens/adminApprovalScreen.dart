@@ -7,6 +7,7 @@ class AdminApprovalScreen extends StatelessWidget {
     {'username': 'user1', 'status': 'pending'},
     {'username': 'user2', 'status': 'pending'},
     // 대기 중인 요청 리스트 예시 (실제 구현에서는 서버에서 받아옴)
+    _AdminApprovalScreenState createState() => _AdminApprovalScreenState();
   ];
 
   void _approveRequest(String username) {
@@ -48,6 +49,60 @@ class AdminApprovalScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _AdminApprovalScreenState extends State<AdminApprovalScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Admin Approval'),
+      ),
+      body: Column(
+        children: [
+          // 페이지의 콘텐츠를 여기에 추가
+          Expanded(
+            child: Center(
+              child: Text('Admin Approval 페이지의 콘텐츠를 여기에 추가하세요'),
+            ),
+          ),
+          // 네비게이션 버튼 추가
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
+                  child: Text('Book Request'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/main/request-list');
+                  },
+                  child: Text('Request List'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/main/ai-recommendation');
+                  },
+                  child: Text('AI Recommendation'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/main/my-page');
+                  },
+                  child: Text('My Page'),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
