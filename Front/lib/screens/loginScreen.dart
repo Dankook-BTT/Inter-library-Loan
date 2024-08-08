@@ -11,7 +11,7 @@ import 'package:inter_library_loan_new/screens/idCheck.dart'; //아이디 찾기
 import 'package:inter_library_loan_new/screens/pwCheck.dart'; //비번 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/book_request_screen.dart';
 
-final url = Uri.parse('https://dankook2021.azurewebsites.net/'); // 서버의 로그인 엔드포인트 URL
+final url = Uri.parse(AppPath.baseUrl); // 서버의 로그인 엔드포인트 URL
 
 //애플리케이션의 루트 위젯을 정의하는 클래스
 class LoginApp extends StatelessWidget {
@@ -20,10 +20,10 @@ class LoginApp extends StatelessWidget {
     return MaterialApp(
       //라우팅을 설정하여 경로와 화면을 연결
       routes: {
-        '/': (context) => LoginScreen(),
-        '/main/book-request': (context) => BookRequestScreen(),
-        '/id-check': (context) => IdCheckScreen(),
-        '/pw-check': (context) => PwCheckScreen(),
+        AppPath.login: (context) => LoginScreen(),
+        AppPath.bookRequest: (context) => BookRequestScreen(),
+        AppPath.idCheck: (context) => IdCheckScreen(),
+        AppPath.pwCheck: (context) => PwCheckScreen(),
         // 추가적인 경로를 필요에 따라 여기에 추가할 수 있음
         // 예: '/home': (context) => HomeScreen(),
         // home 속성을 사용하지 않고 모든 경로를 routes로 관리하도록 변경함으로써
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login() async {
     try {
       final response = await http.post(
-        url,
+        Uri.parse(AppPath.loginUrl),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'id': _id, 'password': _password}),
       );
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // 로그인 성공
         final data = json.decode(response.body);
         // 예: 토큰 저장, 사용자 정보 저장 등
-        Navigator.pushNamed(context, ApiPath.baseUrl); // 홈 화면으로 이동
+        Navigator.pushNamed(context, AppPath.baseUrl); // 홈 화면으로 이동
       } else {
         // 로그인 실패
         final errorData = json.decode(response.body);
@@ -165,14 +165,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     //아이디 찾기 버튼
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/id-check');
+                        Navigator.pushNamed(context, AppPath.idCheck);
                       },
                       child: Text('아이디 찾기', style: TextStyle(fontSize: 15, color: Colors.grey)),
                     ),
                     // 비밀번호 찾기 버튼
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/pw-check');
+                        Navigator.pushNamed(context, AppPath.pwCheck);
                       },
                       child: Text('비밀번호 찾기', style: TextStyle(fontSize: 15, color: Colors.grey)),
                     ),
@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                          if (_formKey.currentState!.validate()) {
                            try {
                              final response = await http.post(
-                                Uri.parse('https://example.com/api/'), // 실제 API 엔드포인트로 변경
+                                Uri.parse('https://dankook2021.azurewebsites.net/api/login'), // 실제 API 엔드포인트로 변경
                                 headers: <String, String>{
                                    'Content-Type': 'application/json; charset=UTF-8',
                                 },
@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   final token = responseData['token']; // 서버에서 반환한 토큰
                                     // 예: 토큰을 안전하게 저장하는 로직 (로컬 스토리지, 세션 등)
                                     // 로그인 성공 후 홈 화면으로 이동
-                                  Navigator.pushNamed(context, ApiPath.bookRequest);
+                                  Navigator.pushNamed(context, AppPath.bookRequest);
                                 } else {
                                     // 로그인 실패
                                   final errorResponse = json.decode(response.body);
@@ -238,7 +238,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             // 회원가입 버튼 클릭 시 로직 추가
                             Navigator.pushNamed(
-                                context, ApiPath.signUpUrl); // 회원가입 화면으로 이동
+                                context, AppPath.signUpUrl); // 회원가입 화면으로 이동
                           },
                           child: Text('회원가입',
                             style: const TextStyle(
