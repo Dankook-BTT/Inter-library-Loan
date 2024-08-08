@@ -13,6 +13,7 @@ import 'screens/CreateAdminScreen.dart'; //관리자 생성 화면 소환
 import 'screens/signupControl.dart' as control; //회원가입 허가 파일 소환
 import 'screens/data_screen.dart'; // 데이터 받는 화면 소환
 import 'package:inter_library_loan_new/models/user_model.dart';
+import 'package:inter_library_loan_new/utils/path.dart';
 
 
 void main() {
@@ -29,20 +30,20 @@ class MyApp extends StatelessWidget { //MyApp은 루트 위젯 느낌, Stateless
       theme: ThemeData( //앱 테마
         primarySwatch: Colors.blue, //앱 색상 지정
       ),
-      initialRoute: '/',
+      initialRoute: AppPath.login,
       routes: { //앱 내의 내비게이션 경로 설정
-        '/': (context) => LoginScreen(),
-        '/main/book-request': (context) => BookRequestScreen(),
-        '/main/request-list': (context) => RequestListScreen(),
-        '/main/ai-recommendation': (context) => AIRecommendationScreen(),
-        '/admin/admin_approval/sign-up-cont/sign-up': (context) => screen.SignUpScreen(),
-        '/id-check': (context) => IdCheckScreen(),
-        '/pw-check': (context) => PwCheckScreen(),
-        '/admin/admin-approval': (context) => AdminApprovalScreen(),
-        '/main/my-page': (context) => MyPage(),
-        '/admin': (context) => AdminCreationScreen(),
-        '/admin/data-screen': (context) => DataScreen(),
-        '/admin/admin_approval/sign-up-cont': (context) => control.SignUpControl(
+        AppPath.login: (context) => LoginScreen(),
+        AppPath.bookRequest: (context) => BookRequestScreen(),
+        AppPath.requestList: (context) => RequestListScreen(),
+        AppPath.aiRecommendation: (context) => AIRecommendationScreen(),
+        AppPath.signUp: (context) => screen.SignUpScreen(),
+        AppPath.idCheck: (context) => IdCheckScreen(),
+        AppPath.pwCheck: (context) => PwCheckScreen(),
+        AppPath.adminApproval: (context) => AdminApprovalScreen(),
+        AppPath.myPage: (context) => MyPage(),
+        AppPath.baseAdmin: (context) => AdminCreationScreen(),
+        AppPath.data: (context) => DataScreen(),
+        AppPath.signUpCont: (context) => control.SignUpControl(
             user: UserModel(
             id: 'admin',
             password: '1234',
@@ -96,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen>{
   void _onMenuSelected(String value) {
     switch (value) {
       case 'myPage':
-        Navigator.pushNamed(context, '/my-page');
+        Navigator.pushNamed(context, AppPath.myPage);
         break;
     // 다른 옵션을 추가할 수 있습니다.
     }

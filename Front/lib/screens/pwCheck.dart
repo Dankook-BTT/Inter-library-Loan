@@ -14,10 +14,10 @@ class _PwCheckScreenState extends State<PwCheckScreen> {
   String? _message;
 
   Future<void> _checkAndProvidePassword() async {
-    final url = Uri.parse(ApiPath.baseUrl);
+    final url = Uri.parse(AppPath.login);
     try {
       final response = await http.post(
-        url,
+        Uri.parse('https://dankook2021.azurewebsites.net/api/login/pw-check'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'id': _id ?? ''}),
       );
@@ -26,7 +26,6 @@ class _PwCheckScreenState extends State<PwCheckScreen> {
         // 사용자 존재 확인
         final responseData = json.decode(response.body);
         final userExists = responseData['exists'];
-
         if (userExists) {
           // 예시용 비밀번호 부여 (실제로는 서버에서 생성하여 반환하는 것이 바람직)
           final tempPassword = "example123"; // 예시용 임시 비밀번호

@@ -172,31 +172,31 @@ class _CreateAdminScreenState extends State<CreateAdminScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, ApiPath.bookRequest);
+                    Navigator.pushNamed(context, AppPath.bookRequest);
                   },
                   child: Text('Book Request'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, ApiPath.requestList);
+                    Navigator.pushNamed(context, AppPath.requestList);
                   },
                   child: Text('Request List'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, ApiPath.aiRecommendation);
+                    Navigator.pushNamed(context, AppPath.aiRecommendation);
                   },
                   child: Text('AI Recommendation'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, ApiPath.myPage);
+                    Navigator.pushNamed(context, AppPath.myPage);
                   },
                   child: Text('My Page'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, ApiPath.adminApprovalUrl);
+                    Navigator.pushNamed(context, AppPath.adminApproval);
                   },
                   child: Text('Admin Approval'),
                 ),

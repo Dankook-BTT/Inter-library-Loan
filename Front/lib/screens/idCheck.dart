@@ -36,7 +36,7 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
   Future<void> _sendToEmailForId() async {
     try {
       final response = await http.post(
-        Uri.parse(ApiPath.sendEmailForId), // URL 상수 사용
+        Uri.parse(AppPath.sendEmailForIdUrl), // URL 상수 사용
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'email': _email ?? ''}),
       );
