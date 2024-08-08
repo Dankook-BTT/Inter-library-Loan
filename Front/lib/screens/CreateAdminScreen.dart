@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:inter_library_loan_new/utils/path.dart';
 
 class AdminCreationScreen extends StatefulWidget {
   @override
@@ -137,6 +138,72 @@ class _AdminCreationScreenState extends State<AdminCreationScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+
+class CreateAdminScreen extends StatefulWidget {
+  @override
+  _CreateAdminScreenState createState() => _CreateAdminScreenState();
+}
+
+class _CreateAdminScreenState extends State<CreateAdminScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Create Admin'),
+      ),
+      body: Column(
+        children: [
+          // 페이지의 콘텐츠를 여기에 추가
+          Expanded(
+            child: Center(
+              child: Text('Create Admin 페이지의 콘텐츠를 여기에 추가하세요'),
+            ),
+          ),
+          // 네비게이션 버튼 추가
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.bookRequest);
+                  },
+                  child: Text('Book Request'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.requestList);
+                  },
+                  child: Text('Request List'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.aiRecommendation);
+                  },
+                  child: Text('AI Recommendation'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.myPage);
+                  },
+                  child: Text('My Page'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.adminApprovalUrl);
+                  },
+                  child: Text('Admin Approval'),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

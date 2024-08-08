@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';//material 패키지를 가져오는데, 
 //위젯, 화면 스타일, 네비게이션 및 라우팅, 상호작용 등의 기능이 있음
 import 'package:http/http.dart' as http; // http 패키지 임포트
 import 'dart:convert'; // JSON 파싱을 위해 사용
-
+import 'package:inter_library_loan_new/utils/path.dart';
 import 'package:inter_library_loan_new/screens/idCheck.dart'; //아이디 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/pwCheck.dart'; //비번 찾기 화면을 구현한 다트 파일 소환
 import 'package:inter_library_loan_new/screens/book_request_screen.dart';
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // 로그인 성공
         final data = json.decode(response.body);
         // 예: 토큰 저장, 사용자 정보 저장 등
-        Navigator.pushNamed(context, '/home'); // 홈 화면으로 이동
+        Navigator.pushNamed(context, ApiPath.baseUrl); // 홈 화면으로 이동
       } else {
         // 로그인 실패
         final errorData = json.decode(response.body);
@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   final token = responseData['token']; // 서버에서 반환한 토큰
                                     // 예: 토큰을 안전하게 저장하는 로직 (로컬 스토리지, 세션 등)
                                     // 로그인 성공 후 홈 화면으로 이동
-                                  Navigator.pushNamed(context, '/home');
+                                  Navigator.pushNamed(context, ApiPath.bookRequest);
                                 } else {
                                     // 로그인 실패
                                   final errorResponse = json.decode(response.body);
@@ -238,7 +238,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             // 회원가입 버튼 클릭 시 로직 추가
                             Navigator.pushNamed(
-                                context, '/sign-up'); // 회원가입 화면으로 이동
+                                context, ApiPath.signUpUrl); // 회원가입 화면으로 이동
                           },
                           child: Text('회원가입',
                             style: const TextStyle(

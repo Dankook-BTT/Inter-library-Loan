@@ -3,6 +3,7 @@ import '../models/book_request.dart';
 import '../services/api_service.dart';
 import '../widgets/book_request_card.dart';
 import '../screens/mypage.dart';
+import 'package:inter_library_loan_new/utils/path.dart';
 
 class BookRequestScreen extends StatefulWidget {
   @override
@@ -17,15 +18,15 @@ class _BookRequestScreenState extends State<BookRequestScreen> {
   TextEditingController searchController = TextEditingController();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _loadBookRequests();
   }
 
-  Future<void> _loadBookRequests() async{
+  Future<void> _loadBookRequests() async {
     futureBookRequests = ApiService().fetchBookRequests();
-    futureBookRequests.then((bookRequest){
-      setState((){
+    futureBookRequests.then((bookRequest) {
+      setState(() {
         this.bookRequests = bookRequests;
         filteredBookRequests = bookRequests;
       });
@@ -33,8 +34,8 @@ class _BookRequestScreenState extends State<BookRequestScreen> {
     });
   }
 
-  void _filterBooks(String query){
-    final filtered = bookRequests.where((book){
+  void _filterBooks(String query) {
+    final filtered = bookRequests.where((book) {
       final titleLower = book.title.toLowerCase();
       final authorLower = book.author.toLowerCase();
       final translatorLower = book.translator.toLowerCase();
@@ -46,7 +47,7 @@ class _BookRequestScreenState extends State<BookRequestScreen> {
           bookNumberLower.contains(searchLower);
     }).toList();
 
-    setState((){
+    setState(() {
       filteredBookRequests = filtered;
     });
     print('Filtered book requests: $filteredBookRequests'); //필터링된 데이터 확인
@@ -99,48 +100,79 @@ class _BookRequestScreenState extends State<BookRequestScreen> {
           ),
           Expanded(
             child: searchResults.isNotEmpty
-              ? ListView.builder(
-                  itemCount: searchResults.length,
-                  itemBuilder: (context, index){
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 30.0),
-                      child: BookRequestCard(
-                        bookRequest: searchResults[index],
-                        onStatusChanged: _loadBookRequests, //상태 변경 시 호출
-                      ),
-                    );
-                  },
-                )
-              : FutureBuilder<List<BookRequest>>(
-                  future: futureBookRequests,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text('Failed to load book requests'));
-                    } else if (snapshot.hasData) {
-                      return ListView.builder(
-                        padding: EdgeInsets.all(8.0),
-                        itemCount: filteredBookRequests.length, //필터링된 도서 목록 사용
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 30.0),
-                            child: BookRequestCard(
-                              bookRequest: filteredBookRequests[index],
-                              onStatusChanged: _loadBookRequests, //상태 변경 시 호출
-                            ),
-                          );
-                        },
+                ? ListView.builder(
+              itemCount: searchResults.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 30.0),
+                  child: BookRequestCard(
+                    bookRequest: searchResults[index],
+                    onStatusChanged: _loadBookRequests, //상태 변경 시 호출
+                  ),
+                );
+              },
+            )
+                : FutureBuilder<List<BookRequest>>(
+              future: futureBookRequests,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Failed to load book requests'));
+                } else if (snapshot.hasData) {
+                  return ListView.builder(
+                    padding: EdgeInsets.all(8.0),
+                    itemCount: filteredBookRequests.length, //필터링된 도서 목록 사용
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 30.0),
+                        child: BookRequestCard(
+                          bookRequest: filteredBookRequests[index],
+                          onStatusChanged: _loadBookRequests, //상태 변경 시 호출
+                        ),
                       );
-                    } else {
-                      return Center(child: Text('No book requests found'));
-                    }
-                  },
-                ),
-              ),
-            ],
+                    },
+                  );
+                } else {
+                  return Center(child: Text('No book requests found'));
+                }
+              },
+            ),
           ),
-        );
-
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.bookRequest);
+                  },
+                  child: Text('Book Request'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.requestList);
+                  },
+                  child: Text('Request List'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.aiRecommendation);
+                  },
+                  child: Text('AI Recommendation'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.myPage);
+                  },
+                  child: Text('My Page'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
