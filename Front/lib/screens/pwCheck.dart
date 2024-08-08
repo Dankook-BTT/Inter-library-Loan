@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:inter_library_loan_new/utils/path.dart';
-
+ // 사용자 확인 API 엔드포인트
 class PwCheckScreen extends StatefulWidget {
   @override
   _PwCheckScreenState createState() => _PwCheckScreenState();
@@ -14,7 +14,7 @@ class _PwCheckScreenState extends State<PwCheckScreen> {
   String? _message;
 
   Future<void> _checkAndProvidePassword() async {
-    final url = Uri.parse('https://example.com/api/check-user'); // 사용자 확인 API 엔드포인트
+    final url = Uri.parse(ApiPath.baseUrl);
     try {
       final response = await http.post(
         url,
@@ -102,6 +102,14 @@ class _PwCheckScreenState extends State<PwCheckScreen> {
                   _message!,
                   style: TextStyle(color: Colors.red, fontSize: 16),
                 ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context); // 이전 화면으로 돌아가는 네비게이션
+                },
+                child: Text('이전 화면으로 돌아가기'),
+              ),
+              SizedBox(height: 20),
             ],
           ),
         ),

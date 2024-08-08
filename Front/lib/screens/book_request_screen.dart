@@ -146,19 +146,25 @@ class _BookRequestScreenState extends State<BookRequestScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/main/request-list');
+                    Navigator.pushNamed(context, ApiPath.bookRequest);
+                  },
+                  child: Text('Book Request'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ApiPath.requestList);
                   },
                   child: Text('Request List'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/main/ai-recommendation');
+                    Navigator.pushNamed(context, ApiPath.aiRecommendation);
                   },
                   child: Text('AI Recommendation'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/main/my-page');
+                    Navigator.pushNamed(context, ApiPath.myPage);
                   },
                   child: Text('My Page'),
                 ),

@@ -42,28 +42,28 @@ class SignUpScreen extends StatefulWidget {
             // 여기에 회원가입 관련 콘텐츠를 추가할 수 있습니다.
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/main/my-page');
+                Navigator.pushNamed(context, ApiPath.myPage);
               },
               child: Text('Go to My Page'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/main/request-list');
+                Navigator.pushNamed(context, ApiPath.requestList);
               },
               child: Text('Go to Request List'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/main/ai-recommendation');
+                Navigator.pushNamed(context, ApiPath.aiRecommendation);
               },
               child: Text('Go to AI Recommendation'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/admin/data_screen');
+                Navigator.pushNamed(context, ApiPath.dataUrl);
               },
               child: Text('Go to Data Screen'),
             ),
@@ -83,7 +83,7 @@ class SignUpScreenState extends State<SignUpScreen> {
   String? _pwCheck;
 
   Future<String> signUp(String username, String email, String password) async {
-    final url = Uri.parse('https://dankook2021.azurewebsites.net/signup');  // 실제 서버 주소 사용
+    final url = Uri.parse(ApiPath.signUpUrl);  // 실제 서버 주소 사용
     final headers = {"Content-Type": "application/json"};
     final body = jsonEncode({
       'name': username,

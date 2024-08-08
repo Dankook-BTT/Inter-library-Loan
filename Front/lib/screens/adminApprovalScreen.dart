@@ -3,10 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:inter_library_loan_new/utils/path.dart';
 
+
+
 class AdminApprovalScreen extends StatefulWidget {
   @override
   _AdminApprovalScreenState createState() => _AdminApprovalScreenState();
+}
 
+class _AdminApprovalScreenState extends State<AdminApprovalScreen> {
   final List<Map<String, String>> pendingRequests = [
     {'username': 'user1', 'status': 'pending'},
     {'username': 'user2', 'status': 'pending'},
@@ -34,7 +38,6 @@ class AdminApprovalScreen extends StatefulWidget {
         title: Text('회원가입 요청 관리'),
       ),
       body: ListView.builder(
-
         itemCount: pendingRequests.length,
         itemBuilder: (context, index) {
           return ListTile(
@@ -60,53 +63,43 @@ class AdminApprovalScreen extends StatefulWidget {
   }
 }
 
-class _AdminApprovalScreenState extends State<AdminApprovalScreen> {
+class NavigationButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Admin Approval'),
-      ),
-      body: Column(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          // 페이지의 콘텐츠를 여기에 추가
-          Expanded(
-            child: Center(
-              child: Text('Admin Approval 페이지의 콘텐츠를 여기에 추가하세요'),
-            ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, ApiPath.bookRequest);
+            },
+            child: Text('Book Request'),
           ),
-          // 네비게이션 버튼 추가
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/');
-                  },
-                  child: Text('Book Request'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/main/request-list');
-                  },
-                  child: Text('Request List'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/main/ai-recommendation');
-                  },
-                  child: Text('AI Recommendation'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/main/my-page');
-                  },
-                  child: Text('My Page'),
-                ),
-              ],
-            ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, ApiPath.baseAdminUrl);
+            },
+            child: Text('Admin Base'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, ApiPath.adminApprovalUrl);
+            },
+            child: Text('Admin Approval'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, ApiPath.signUpContUrl);
+            },
+            child: Text('Sign Up Cont'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, ApiPath.signUpUrl);
+            },
+            child: Text('Sign Up'),
           ),
         ],
       ),

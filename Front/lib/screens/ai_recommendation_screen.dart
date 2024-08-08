@@ -121,19 +121,19 @@ class _AIRecommendationPageState extends State<AIRecommendationPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/');
+                    Navigator.pushNamed(context, ApiPath.bookRequest);
                   },
                   child: Text('Book Request'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/main/request-list');
+                    Navigator.pushNamed(context, ApiPath.adminApprovalUrl);
                   },
                   child: Text('Request List'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/main/my-page');
+                    Navigator.pushNamed(context, ApiPath.myPage);
                   },
                   child: Text('My Page'),
                 ),
