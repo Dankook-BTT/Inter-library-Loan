@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter_library_loan_new/utils/path.dart';
 
 class DataScreen extends StatefulWidget {
   @override
@@ -52,3 +53,69 @@ class DetailScreen extends StatelessWidget {
     );
   }
 }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Data Screen'),
+      ),
+      body: Column(
+        children: [
+          // 페이지의 콘텐츠를 여기에 추가
+          Expanded(
+            child: Center(
+              child: Text('Data Screen 페이지의 콘텐츠를 여기에 추가하세요'),
+            ),
+          ),
+          // 네비게이션 버튼 추가
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.bookRequest);
+                  },
+                  child: Text('Book Request'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.requestList);
+                  },
+                  child: Text('Request List'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.aiRecommendation);
+                  },
+                  child: Text('AI Recommendation'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.myPage);
+                  },
+                  child: Text('My Page'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.signUp);
+                  },
+                  child: Text('Admin Approval'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.baseAdmin);
+                  },
+                  child: Text('Create Admin'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+

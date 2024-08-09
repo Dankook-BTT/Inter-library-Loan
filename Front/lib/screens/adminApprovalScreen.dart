@@ -1,13 +1,22 @@
 //관리자가 회원가입을 승인하도록 하게
 //관리자만 볼 수 있는 회원가입 승인 대시보드
 import 'package:flutter/material.dart';
+import 'package:inter_library_loan_new/utils/path.dart';
 
-class AdminApprovalScreen extends StatelessWidget {
+
+
+class AdminApprovalScreen extends StatefulWidget {
+  @override
+  _AdminApprovalScreenState createState() => _AdminApprovalScreenState();
+}
+
+class _AdminApprovalScreenState extends State<AdminApprovalScreen> {
   final List<Map<String, String>> pendingRequests = [
     {'username': 'user1', 'status': 'pending'},
     {'username': 'user2', 'status': 'pending'},
     // 대기 중인 요청 리스트 예시 (실제 구현에서는 서버에서 받아옴)
   ];
+
 
   void _approveRequest(String username) {
     // 서버 API 호출하여 해당 사용자의 요청 승인
@@ -20,6 +29,7 @@ class AdminApprovalScreen extends StatelessWidget {
     print('$username 회원가입 요청 거부');
     // 처리 후 UI 업데이트 로직 추가
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +58,50 @@ class AdminApprovalScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class NavigationButtons extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppPath.bookRequest);
+            },
+            child: Text('Book Request'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppPath.baseAdmin);
+            },
+            child: Text('Admin Base'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppPath.adminApproval);
+            },
+            child: Text('Admin Approval'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppPath.signUpCont);
+            },
+            child: Text('Sign Up Cont'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppPath.signUp);
+            },
+            child: Text('Sign Up'),
+          ),
+        ],
       ),
     );
   }

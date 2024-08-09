@@ -6,6 +6,8 @@ on:
       - main  # 배포할 브랜치 이름
     paths:
       - 'Front/**'
+  workflow_dispatch:
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -38,14 +40,18 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-and-deploy
     environment: 'production'
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: flutter-web-app
+          name: webapp
+          path: webapp
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
@@ -53,4 +59,4 @@ jobs:
           app-name: 'dankook2021'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: flutter-web-app
+          package: webapp

@@ -2,23 +2,22 @@
 //권한이 있을 경우에만 회원가입 화면에 접근이 가능하도록 만든 파일
 import 'package:flutter/material.dart';
 import 'package:inter_library_loan_new/models/user_model.dart'; // UserModel을 가져옵니다.
-
+import 'package:inter_library_loan_new/utils/path.dart';
 class SignUpControl extends StatelessWidget {
   final UserModel user; // 현재 사용자 정보
-
-  SignUpControl({required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Screen'),
+        title: Text('Signup Control'),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 회원가입 버튼
             ElevatedButton(
               onPressed: () {
                 if (user.isAdmin()) {
@@ -36,11 +35,44 @@ class SignUpControl extends StatelessWidget {
               },
               child: Text('회원가입 화면으로 이동'),
             ),
+            SizedBox(height: 20),
+            // 여기에 가입 관리 관련 콘텐츠를 추가할 수 있습니다.
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppPath.myPage);
+              },
+              child: Text('Go to My Page'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppPath.requestList);
+              },
+              child: Text('Go to Request List'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppPath.aiRecommendation);
+              },
+              child: Text('Go to AI Recommendation'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppPath.data);
+              },
+              child: Text('Go to Data Screen'),
+            ),
           ],
         ),
       ),
     );
   }
+
+
+  SignUpControl({required this.user});
+
 }
 
 class SignUpScreen extends StatelessWidget {
