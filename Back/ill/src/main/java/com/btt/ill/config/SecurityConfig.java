@@ -23,13 +23,7 @@ public class SecurityConfig {
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
-                .formLogin(formLogin ->
-                        formLogin
-                                .loginPage("/login")
-                                .defaultSuccessUrl("/home", true)
-                                .failureUrl("/login?error=true")
-                                .permitAll()
-                )
+                .formLogin(AbstractHttpConfigurer::disable)
                 .logout(LogoutConfigurer::permitAll);
 
         return http.build();
