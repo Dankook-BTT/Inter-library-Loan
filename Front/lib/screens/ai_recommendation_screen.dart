@@ -3,6 +3,7 @@ import '../services/api_service.dart';
 import '../models/book_request.dart';
 import '../widgets/book_request_card.dart';
 import '../screens/mypage.dart';
+import 'package:inter_library_loan_new/utils/path.dart';
 
 class AIRecommendationScreen extends StatefulWidget {
   @override
@@ -84,6 +85,60 @@ class _AIRecommendationScreenState extends State<AIRecommendationScreen> {
                 return Center(child: Text('No book requests found'));
               }
             },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AIRecommendationPage extends StatefulWidget {
+  @override
+  _AIRecommendationPageState createState() => _AIRecommendationPageState();
+}
+
+class _AIRecommendationPageState extends State<AIRecommendationPage> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AI Recommendation'),
+      ),
+      body: Column(
+        children: [
+          // 페이지의 콘텐츠를 여기에 추가
+          Expanded(
+            child: Center(
+              child: Text('AI 추천 페이지의 콘텐츠를 여기에 추가하세요'),
+            ),
+          ),
+          // 네비게이션 버튼 추가
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.bookRequest);
+                  },
+                  child: Text('Book Request'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.adminApproval);
+                  },
+                  child: Text('Request List'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppPath.myPage);
+                  },
+                  child: Text('My Page'),
+                ),
+              ],
+            ),
           ),
         ],
       ),

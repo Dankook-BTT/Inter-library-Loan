@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:inter_library_loan_new/models/user_model.dart';
 import 'package:inter_library_loan_new/utils/color.dart';
 import 'package:inter_library_loan_new/widgets/shared_button.dart';
-
+import 'package:inter_library_loan_new/utils/path.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -16,10 +16,62 @@ void main() {
 
 // SignUpScreen 클래스 정의
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
 
   @override
   SignUpScreenState createState() => SignUpScreenState();
+  
+  const SignUpScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Signup'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Signup Screen Content',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            // 여기에 회원가입 관련 콘텐츠를 추가할 수 있습니다.
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppPath.myPage);
+              },
+              child: Text('Go to My Page'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppPath.requestList);
+              },
+              child: Text('Go to Request List'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppPath.aiRecommendation);
+              },
+              child: Text('Go to AI Recommendation'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppPath.data);
+              },
+              child: Text('Go to Data Screen'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class SignUpScreenState extends State<SignUpScreen> {
@@ -31,7 +83,7 @@ class SignUpScreenState extends State<SignUpScreen> {
   String? _pwCheck;
 
   Future<String> signUp(String username, String email, String password) async {
-    final url = Uri.parse('http://54.180.42.87/api/signup');  // 실제 서버 주소 사용
+    final url = Uri.parse(AppPath.signUpUrl);  // 실제 서버 주소 사용
     final headers = {"Content-Type": "application/json"};
     final body = jsonEncode({
       'name': username,

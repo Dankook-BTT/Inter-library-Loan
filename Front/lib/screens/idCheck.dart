@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:inter_library_loan_new/utils/path.dart';
+
 
 class IdCheckScreen extends StatefulWidget {
   @override
@@ -12,11 +14,29 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
   String? _email;
   String? _message;
 
-  Future<void> _sendEmailForId() async {
-    final url = Uri.parse('https://example.com/api/find-id'); // 아이디 찾기 API 엔드포인트
+  void _sendEmailForId() {
+    // 이메일 발송 로직을 구현합니다.
+    // 예를 들어, 서버로 이메일을 보내 아이디를 찾는 요청을 합니다.
+    // 여기에서는 성공 여부를 시뮬레이션합니다.
+
+    bool emailSentSuccessfully = true; // 실제 이메일 발송 결과에 따라 설정
+
+    if (emailSentSuccessfully) {
+      // 이메일 발송이 성공하면 로그인 화면으로 이동
+      Navigator.pushNamed(context, '/');
+    } else {
+      // 이메일 발송 실패 시 사용자에게 메시지를 표시
+      setState(() {
+        _message = '아이디 발송에 실패했습니다. 다시 시도하세요.';
+      });
+    }
+  }
+
+
+  Future<void> _sendToEmailForId() async {
     try {
       final response = await http.post(
-        url,
+        Uri.parse(AppPath.sendEmailForIdUrl), // URL 상수 사용
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'email': _email ?? ''}),
       );
@@ -39,6 +59,7 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,12 +100,13 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
                   }
                   return null;
                 },
+
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    _sendEmailForId(); // 이메일로 아이디 발송 요청
+                    _sendToEmailForId(); // 이메일로 아이디 발송 요청
                   }
                 },
                 child: Text('아이디 발송'),
@@ -95,6 +117,7 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
                   _message!,
                   style: TextStyle(color: Colors.red, fontSize: 16),
                 ),
+
             ],
           ),
         ),
