@@ -23,7 +23,7 @@ class _IdCheckScreenState extends State<IdCheckScreen> {
 
     if (emailSentSuccessfully) {
       // 이메일 발송이 성공하면 로그인 화면으로 이동
-      Navigator.pushNamed(context, '/');
+      Navigator.pushNamed(context, AppPath.login);
     } else {
       // 이메일 발송 실패 시 사용자에게 메시지를 표시
       setState(() {
