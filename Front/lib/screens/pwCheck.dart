@@ -17,7 +17,7 @@ class _PwCheckScreenState extends State<PwCheckScreen> {
     final url = Uri.parse(AppPath.login);
     try {
       final response = await http.post(
-        Uri.parse('https://dankook2021.azurewebsites.net/api/login/pw-check'),
+        Uri.parse(AppPath.pwCheckUrl),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'id': _id ?? ''}),
       );
