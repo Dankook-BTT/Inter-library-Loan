@@ -23,8 +23,7 @@ public class SecurityConfig {
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
-                .formLogin(AbstractHttpConfigurer::disable)
-                .logout(LogoutConfigurer::permitAll);
+                .formLogin(AbstractHttpConfigurer::disable);
 
         return http.build();
     }

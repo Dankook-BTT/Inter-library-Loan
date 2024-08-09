@@ -21,7 +21,7 @@ public class loginController {
     @Autowired
     private ApiService apiService;
 
-    @PostMapping("/login")
+    @PostMapping("/")
     public ResponseEntity<Map<String, String>> login(@RequestBody UserModel user) {
         // 받은 데이터를 처리하는 로직 (예: 데이터베이스에 저장 등)
         System.out.println("Received data: " + user.getName());
