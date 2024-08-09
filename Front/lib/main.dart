@@ -28,28 +28,9 @@ class MyApp extends StatelessWidget { //MyApp은 루트 위젯 느낌, Stateless
       theme: ThemeData( //앱 테마
         primarySwatch: Colors.blue, //앱 색상 지정
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: { //앱 내의 내비게이션 경로 설정
-        '/': (context) => LoginScreen(),
-        '/main/book-request': (context) => BookRequestScreen(),
-        '/main/request-list': (context) => RequestListScreen(),
-        '/main/ai-recommendation': (context) => AIRecommendationScreen(),
-        '/admin/admin_approval/sign-up-cont/sign-up': (context) => screen.SignUpScreen(),
-        '/id-check': (context) => IdCheckScreen(),
-        '/pw-check': (context) => PwCheckScreen(),
-        '/admin/admin-approval': (context) => AdminApprovalScreen(),
-        '/main/my-page': (context) => MyPage(),
-        '/admin': (context) => AdminCreationScreen(),
-        '/admin/data-screen': (context) => DataScreen(),
-        '/admin/admin_approval/sign-up-cont': (context) => control.SignUpControl(
-            user: UserModel(
-            id: 'someId',
-            password: 'somePassword',
-            role: 'admin', // 'admin' 또는 'user'와 같은 유효한 역할
-            lib: 'someLibrary',
-            name: 'admin',
-            email: 'admin',
-          ),
+        '/login': (context) => LoginScreen(),
         ),
       },
     );

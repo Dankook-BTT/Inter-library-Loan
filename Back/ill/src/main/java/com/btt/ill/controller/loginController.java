@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -15,11 +16,14 @@ import java.util.Map;
 @RequestMapping("/")
 public class loginController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final ApiService apiService;
 
     @Autowired
-    private ApiService apiService;
+    public loginController(UserService userService, ApiService apiService) {
+        this.userService = userService;
+        this.apiService = apiService;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody UserModel user) {
