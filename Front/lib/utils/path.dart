@@ -5,7 +5,6 @@ class AppPath {
 
   // Auth 관련 엔드포인트
   static const String sendEmailForIdUrl = '$baseUrl/send-email';
-  static const String loginUrl = '$baseUrl/main';
   static const String idCheckUrl = '$baseUrl/id-Check';
   static const String pwCheckUrl = '$baseUrl/pw-Check';
 
@@ -24,7 +23,7 @@ class AppPath {
 
   //여기서부턴 app routes들
   static const String sendEmailForId = '/send-email';
-  static const String login = '/main';
+  static const String login = '/';
   static const String idCheck = '/id-Check';
   static const String pwCheck = '/pw-Check';
 
