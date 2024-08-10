@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login() async {
     try {
       final response = await http.post(
-        Uri.parse(AppPath.loginUrl),
+        Uri.parse(AppPath.baseUrl),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'id': _id, 'password': _password}),
       );
