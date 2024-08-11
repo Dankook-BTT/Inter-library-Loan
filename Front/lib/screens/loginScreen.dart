@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (response.statusCode == 200) {
         // 로그인 성공
-        final data = json.decode(response.body);
+        final UserModel = json.decode(response.body);
         // 예: 토큰 저장, 사용자 정보 저장 등
         Navigator.pushNamed(context, AppRoutes.login); // 홈 화면으로 이동
       } else {
