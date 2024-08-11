@@ -53,9 +53,13 @@ jobs:
           name: flutter-web-app
           path: flutter-web-app
 
-      - name: List files for debugging
+      - name: Check if web directory exists
+        if: success() && (steps.build.outputs.web_directory_exists == 'true')
         run: ls -la ./Front/build/web
 
+      - name: Set output for web directory
+        id: build
+        run: echo "::set-output name=web_directory_exists::$(if [ -d "./Front/build/web" ]; then echo 'true'; else echo 'false'; fi)"
 
       - name: Login to Azure
         uses: azure/login@v1
