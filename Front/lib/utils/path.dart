@@ -1,7 +1,7 @@
 // constants.dart
 
 class AppPath {
-  static const String baseUrl = 'https://dankook2021.azurewebsites.net/login';
+  static const String baseUrl = 'https://dankook2021.azurewebsites.net/';
 
   // Auth 관련 엔드포인트
   static const String sendEmailForIdUrl = '$baseUrl/send-email';
