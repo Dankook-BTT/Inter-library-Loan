@@ -54,7 +54,7 @@ jobs:
           path: flutter-web-app
 
       - name: List files for debugging
-        run: ls -la ./Front/build/web
+        run: ls -la ./build/web
 
 
       - name: Login to Azure
