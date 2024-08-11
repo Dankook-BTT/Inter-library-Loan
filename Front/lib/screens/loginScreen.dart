@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final response = await http.post(
         Uri.parse(AppPath.baseUrl),
         headers: {'Content-Type': 'application/json'},
-        body: json.encode({'id': _id, 'password': _password}),
+        body: json.encode({'id': 'admin', 'password': 1234}),
       );
 
       if (response.statusCode == 200) {
