@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _password;
   String? _userRole = "user";
 
-  Future<void> _login() async {
+  Future<void> login() async {
     try {
       final response = await http.post(
         Uri.parse(AppPath.baseUrl),
