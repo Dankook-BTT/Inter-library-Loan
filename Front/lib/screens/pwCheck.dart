@@ -14,7 +14,7 @@ class _PwCheckScreenState extends State<PwCheckScreen> {
   String? _message;
 
   Future<void> _checkAndProvidePassword() async {
-    final url = Uri.parse(AppPath.login);
+    final url = Uri.parse(AppPath.baseUrl);
     try {
       final response = await http.post(
         Uri.parse(AppPath.pwCheckUrl),

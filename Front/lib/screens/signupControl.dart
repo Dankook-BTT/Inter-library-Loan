@@ -39,28 +39,28 @@ class SignUpControl extends StatelessWidget {
             // 여기에 가입 관리 관련 콘텐츠를 추가할 수 있습니다.
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.myPage);
+                Navigator.pushNamed(context, AppRoutes.myPage);
               },
               child: Text('Go to My Page'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.requestList);
+                Navigator.pushNamed(context, AppRoutes.requestList);
               },
               child: Text('Go to Request List'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.aiRecommendation);
+                Navigator.pushNamed(context, AppRoutes.aiRecommendation);
               },
               child: Text('Go to AI Recommendation'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.data);
+                Navigator.pushNamed(context, AppRoutes.data);
               },
               child: Text('Go to Data Screen'),
             ),

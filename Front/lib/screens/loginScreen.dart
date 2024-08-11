@@ -20,10 +20,10 @@ class LoginApp extends StatelessWidget {
     return MaterialApp(
       //라우팅을 설정하여 경로와 화면을 연결
       routes: {
-        AppPath.login: (context) => LoginScreen(),
-        AppPath.bookRequest: (context) => BookRequestScreen(),
-        AppPath.idCheck: (context) => IdCheckScreen(),
-        AppPath.pwCheck: (context) => PwCheckScreen(),
+        AppRoutes.login: (context) => LoginScreen(),
+        AppRoutes.bookRequest: (context) => BookRequestScreen(),
+        AppRoutes.idCheck: (context) => IdCheckScreen(),
+        AppRoutes.pwCheck: (context) => PwCheckScreen(),
         // 추가적인 경로를 필요에 따라 여기에 추가할 수 있음
         // 예: '/home': (context) => HomeScreen(),
         // home 속성을 사용하지 않고 모든 경로를 routes로 관리하도록 변경함으로써
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // 로그인 성공
         final data = json.decode(response.body);
         // 예: 토큰 저장, 사용자 정보 저장 등
-        Navigator.pushNamed(context, AppPath.baseUrl); // 홈 화면으로 이동
+        Navigator.pushNamed(context, AppRoutes.login); // 홈 화면으로 이동
       } else {
         // 로그인 실패
         final errorData = json.decode(response.body);
@@ -165,14 +165,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     //아이디 찾기 버튼
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, AppPath.idCheck);
+                        Navigator.pushNamed(context, AppRoutes.idCheck);
                       },
                       child: Text('아이디 찾기', style: TextStyle(fontSize: 15, color: Colors.grey)),
                     ),
                     // 비밀번호 찾기 버튼
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, AppPath.pwCheck);
+                        Navigator.pushNamed(context, AppRoutes.pwCheck);
                       },
                       child: Text('비밀번호 찾기', style: TextStyle(fontSize: 15, color: Colors.grey)),
                     ),
@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   final token = responseData['token']; // 서버에서 반환한 토큰
                                     // 예: 토큰을 안전하게 저장하는 로직 (로컬 스토리지, 세션 등)
                                     // 로그인 성공 후 홈 화면으로 이동
-                                  Navigator.pushNamed(context, AppPath.bookRequest);
+                                  Navigator.pushNamed(context, AppRoutes.bookRequest);
                                 } else {
                                     // 로그인 실패
                                   final errorResponse = json.decode(response.body);

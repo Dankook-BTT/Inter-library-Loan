@@ -73,31 +73,31 @@ class NavigationButtons extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, AppPath.bookRequest);
+              Navigator.pushNamed(context, AppRoutes.bookRequest);
             },
             child: Text('Book Request'),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, AppPath.baseAdmin);
+              Navigator.pushNamed(context, AppRoutes.baseAdmin);
             },
             child: Text('Admin Base'),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, AppPath.adminApproval);
+              Navigator.pushNamed(context, AppRoutes.adminApproval);
             },
             child: Text('Admin Approval'),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, AppPath.signUpCont);
+              Navigator.pushNamed(context, AppRoutes.signUpCont);
             },
             child: Text('Sign Up Cont'),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, AppPath.signUp);
+              Navigator.pushNamed(context, AppRoutes.signUp);
             },
             child: Text('Sign Up'),
           ),

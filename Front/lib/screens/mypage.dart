@@ -103,28 +103,28 @@ class _MyPageState extends State<MyPage> {
             // 여기에 사용자 정보나 기타 컨텐츠를 추가할 수 있습니다.
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.requestList);
+                Navigator.pushNamed(context, AppRoutes.requestList);
               },
               child: Text('Go to Request List'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.aiRecommendation);
+                Navigator.pushNamed(context, AppRoutes.aiRecommendation);
               },
               child: Text('Go to AI Recommendation'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.data);
+                Navigator.pushNamed(context, AppRoutes.data);
               },
               child: Text('Go to Data Screen'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.adminApproval);
+                Navigator.pushNamed(context, AppRoutes.adminApproval);
               },
               child: Text('Go to Admin Approval'),
             ),

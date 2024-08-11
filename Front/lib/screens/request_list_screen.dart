@@ -25,28 +25,28 @@ class RequestListScreen extends StatefulWidget {
             // 여기에 요청 리스트 관련 콘텐츠를 추가할 수 있습니다.
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.myPage);
+                Navigator.pushNamed(context, AppRoutes.myPage);
               },
               child: Text('Go to My Page'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.aiRecommendation);
+                Navigator.pushNamed(context, AppRoutes.aiRecommendation);
               },
               child: Text('Go to AI Recommendation'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.data);
+                Navigator.pushNamed(context, AppRoutes.data);
               },
               child: Text('Go to Data Screen'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppPath.adminApproval);
+                Navigator.pushNamed(context, AppRoutes.adminApproval);
               },
               child: Text('Go to Admin Approval'),
             ),

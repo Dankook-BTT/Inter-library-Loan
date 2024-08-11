@@ -30,20 +30,20 @@ class MyApp extends StatelessWidget { //MyApp은 루트 위젯 느낌, Stateless
       theme: ThemeData( //앱 테마
         primarySwatch: Colors.blue, //앱 색상 지정
       ),
-      initialRoute: AppPath.login,
+      initialRoute: AppRoutes.login,
       routes: { //앱 내의 내비게이션 경로 설정
-        AppPath.login: (context) => LoginScreen(),
-        AppPath.bookRequest: (context) => BookRequestScreen(),
-        AppPath.requestList: (context) => RequestListScreen(),
-        AppPath.aiRecommendation: (context) => AIRecommendationScreen(),
-        AppPath.signUp: (context) => screen.SignUpScreen(),
-        AppPath.idCheck: (context) => IdCheckScreen(),
-        AppPath.pwCheck: (context) => PwCheckScreen(),
-        AppPath.adminApproval: (context) => AdminApprovalScreen(),
-        AppPath.myPage: (context) => MyPage(),
-        AppPath.baseAdmin: (context) => AdminCreationScreen(),
-        AppPath.data: (context) => DataScreen(),
-        AppPath.signUpCont: (context) => control.SignUpControl(
+        AppRoutes.login: (context) => LoginScreen(),
+        AppRoutes.bookRequest: (context) => BookRequestScreen(),
+        AppRoutes.requestList: (context) => RequestListScreen(),
+        AppRoutes.aiRecommendation: (context) => AIRecommendationScreen(),
+        AppRoutes.signUp: (context) => screen.SignUpScreen(),
+        AppRoutes.idCheck: (context) => IdCheckScreen(),
+        AppRoutes.pwCheck: (context) => PwCheckScreen(),
+        AppRoutes.adminApproval: (context) => AdminApprovalScreen(),
+        AppRoutes.myPage: (context) => MyPage(),
+        AppRoutes.baseAdmin: (context) => AdminCreationScreen(),
+        AppRoutes.data: (context) => DataScreen(),
+        AppRoutes.signUpCont: (context) => control.SignUpControl(
             user: UserModel(
             id: 'admin',
             password: '1234',
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen>{
   void _onMenuSelected(String value) {
     switch (value) {
       case 'myPage':
-        Navigator.pushNamed(context, AppPath.myPage);
+        Navigator.pushNamed(context, AppRoutes.myPage);
         break;
     // 다른 옵션을 추가할 수 있습니다.
     }

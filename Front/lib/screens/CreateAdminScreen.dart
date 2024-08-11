@@ -18,7 +18,7 @@ class _AdminCreationScreenState extends State<AdminCreationScreen> {
   Future<void> _createAdminAccount() async {
     if (!_formKey.currentState!.validate()) return;
 
-    final url = Uri.parse('https://example.com/api/create-admin'); // 실제 API 엔드포인트로 변경
+    final url = Uri.parse(AppPath.baseAdminUrl); // 실제 API 엔드포인트로 변경
     try {
       final response = await http.post(
         url,
@@ -172,31 +172,31 @@ class _CreateAdminScreenState extends State<CreateAdminScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.bookRequest);
+                    Navigator.pushNamed(context, AppRoutes.bookRequest);
                   },
                   child: Text('Book Request'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.requestList);
+                    Navigator.pushNamed(context, AppRoutes.requestList);
                   },
                   child: Text('Request List'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.aiRecommendation);
+                    Navigator.pushNamed(context, AppRoutes.aiRecommendation);
                   },
                   child: Text('AI Recommendation'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.myPage);
+                    Navigator.pushNamed(context, AppRoutes.myPage);
                   },
                   child: Text('My Page'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.adminApproval);
+                    Navigator.pushNamed(context, AppRoutes.adminApproval);
                   },
                   child: Text('Admin Approval'),
                 ),

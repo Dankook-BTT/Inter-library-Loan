@@ -77,37 +77,37 @@ class DetailScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.bookRequest);
+                    Navigator.pushNamed(context, AppRoutes.bookRequest);
                   },
                   child: Text('Book Request'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.requestList);
+                    Navigator.pushNamed(context, AppRoutes.requestList);
                   },
                   child: Text('Request List'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.aiRecommendation);
+                    Navigator.pushNamed(context, AppRoutes.aiRecommendation);
                   },
                   child: Text('AI Recommendation'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.myPage);
+                    Navigator.pushNamed(context, AppRoutes.myPage);
                   },
                   child: Text('My Page'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.signUp);
+                    Navigator.pushNamed(context, AppRoutes.signUp);
                   },
                   child: Text('Admin Approval'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppPath.baseAdmin);
+                    Navigator.pushNamed(context, AppRoutes.baseAdmin);
                   },
                   child: Text('Create Admin'),
                 ),
